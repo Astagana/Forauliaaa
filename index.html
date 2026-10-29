@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untuk Aulia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;1,6..96,400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div class="border" aria-hidden="true"></div>
+<div id="cur" aria-hidden="true"></div>
+<button id="snd" aria-label="Nyalakan atau matikan musik" hidden>♪</button>
+<nav id="dots" aria-label="Halaman" hidden></nav>
+<p id="tip" hidden>Klik sisi kanan layar untuk lanjut, sisi kiri untuk kembali</p>
+
+<main id="stage">
+  <section class="page" data-t="Pembuka">
+    <div class="sealwrap rv" style="--d:.2s">
+      <svg class="ring" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="c" d="M100,100 m-82,0 a82,82 0 1,1 164,0 a82,82 0 1,1 -164,0"/></defs><text><textPath href="#c">SELAMAT ULANG TAHUN ✦ SALMA AULIA PUTRI ✦ SELAMAT ULANG TAHUN ✦ </textPath></text></svg>
+      <div class="seal">A</div>
+    </div>
+    <p class="rv sm" style="--d:.7s">Sebuah hadiah kecil, khusus untuk</p>
+    <h1 class="rv script xl" style="--d:1s">Aulia</h1>
+    <p class="rv sm pulse" style="--d:1.6s">Klik di mana saja untuk membuka</p>
+  </section>
+
+  <section class="page" data-t="Selamat ulang tahun">
+    <p class="rv serif it" style="--d:.2s">Selamat ulang tahun</p>
+    <h1 class="name">
+      <span class="rv script" style="--d:.5s">Salma</span>
+      <span class="rv big" style="--d:.8s">Aulia</span>
+      <span class="rv script" style="--d:1.2s">Putri</span>
+    </h1>
+    <p class="rv sm" id="count" style="--d:1.7s"></p>
+  </section>
+
+  <section class="page" data-t="Surat">
+    <h2 class="rv" style="--d:.1s">Sebuah surat kecil</h2>
+    <div class="letter rv" style="--d:.3s"><div id="typed"></div><p class="sign" id="sign"></p></div>
+  </section>
+
+  <section class="page" data-t="Potongan cerita">
+    <h2 class="rv" style="--d:.1s">Potongan cerita</h2>
+    <div id="frames"></div>
+  </section>
+
+  <section class="page" data-t="Tentang kamu">
+    <h2 class="rv" style="--d:.1s">Tentang kamu</h2>
+    <p class="rv sm" style="--d:.3s">Ketuk kartunya untuk membaca</p>
+    <div id="cards"></div>
+  </section>
+
+  <section class="page" data-t="Doa">
+    <h2 class="rv" style="--d:.1s">Doa-doa untukmu</h2>
+    <div id="wishList"></div>
+  </section>
+
+  <section class="page" data-t="Kue">
+    <h2 class="rv" style="--d:.1s">Satu permintaan terakhir</h2>
+    <svg id="cakeSvg" class="rv" style="--d:.4s" viewBox="0 0 240 260" role="img" aria-label="Kue ulang tahun dengan tiga lilin">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6e7c8"/><stop offset="1" stop-color="#d9b98a"/></linearGradient>
+        <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8b4a6"/><stop offset="1" stop-color="#c98f7b"/></linearGradient>
+        <radialGradient id="fl" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#fff6d6"/><stop offset=".5" stop-color="#ffc766"/><stop offset="1" stop-color="#ff8a3d"/></radialGradient>
+      </defs>
+      <ellipse cx="120" cy="245" rx="108" ry="10" fill="#000" opacity=".35"/>
+      <rect x="22" y="170" width="196" height="70" rx="10" fill="url(#g2)"/>
+      <path d="M22 182q16 14 32 0t32 0 32 0 32 0 32 0 32 0v-12H22z" fill="#fbf5ec"/>
+      <rect x="52" y="115" width="136" height="60" rx="9" fill="url(#g1)"/>
+      <path d="M52 126q17 14 34 0t34 0 34 0 34 0v-11H52z" fill="#fbf5ec"/>
+      <g transform="translate(88 0)"><rect x="-4" y="78" width="8" height="38" rx="2" fill="#c98f7b"/><path class="flame" d="M0 54c9 12 8 22 0 24-8-2-9-12 0-24z" fill="url(#fl)"/></g>
+      <g transform="translate(120 0)"><rect x="-4" y="70" width="8" height="46" rx="2" fill="#e9d5b0"/><path class="flame" d="M0 46c9 12 8 22 0 24-8-2-9-12 0-24z" fill="url(#fl)"/></g>
+      <g transform="translate(152 0)"><rect x="-4" y="78" width="8" height="38" rx="2" fill="#c98f7b"/><path class="flame" d="M0 54c9 12 8 22 0 24-8-2-9-12 0-24z" fill="url(#fl)"/></g>
+    </svg>
+    <div class="row rv" style="--d:.7s">
+      <button id="blow" class="btn">Tiup lilinnya</button>
+      <button id="mic" class="btn ghost">Tiup pakai mic</button>
+    </div>
+    <p id="after" class="after" hidden></p>
+  </section>
+
+  <section class="page" data-t="Penutup">
+    <p class="rv serif it" style="--d:.3s">Sekali lagi,</p>
+    <h1 class="rv script xl" style="--d:.7s">Selamat ulang tahun, Aulia</h1>
+    <p class="rv serif" style="--d:1.3s" id="closing"></p>
+    <p class="rv sm by" style="--d:1.8s">Dibuat dengan sepenuh hati oleh <strong>Dias</strong></p>
+    <button id="again" class="btn ghost rv" style="--d:2.2s">Ulangi dari awal</button>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
