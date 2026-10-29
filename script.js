@@ -2,7 +2,7 @@
 const CONFIG = {
   birthday: "2026-10-29T00:00:00", // tanggal ulang tahun Aulia (yang akan datang)
   from: "Dias",
-  music: "lagu.mp3", // taruh file mp3 di folder music/, lalu samakan namanya di sini. Kosongkan ("") untuk musik bawaan.
+  music: "Lagu.mp3", // taruh file mp3 di folder music/, lalu samakan namanya di sini. Kosongkan ("") untuk musik bawaan.
   letter: [
     "Aulia, hari ini milik kamu sepenuhnya. Semoga semua hal baik yang kamu tunggu pelan-pelan datang, dan semua yang berat jadi lebih ringan.",
     "Terima kasih sudah jadi orang yang bikin hari-hari terasa lebih hangat. Kamu mungkin nggak sadar, tapi kehadiranmu berarti banget.",
