@@ -86,6 +86,26 @@ function loop(t){
 }
 requestAnimationFrame(loop);
 
+/* ===== musik kotak musik (dibuat langsung di browser) ===== */
+let ac, master, loopT, song, musicOn = true, synthOn = false;
+const synth = () => { if (synthOn) return; synthOn = true; play(); };
+const F = {G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99};
+const MEL = [["G4",.75],["G4",.25],["A4",1],["G4",1],["C5",1],["B4",2],["G4",.75],["G4",.25],["A4",1],["G4",1],["D5",1],["C5",2],
+  ["G4",.75],["G4",.25],["G5",1],["E5",1],["C5",1],["B4",1],["A4",2],["F5",.75],["F5",.25],["E5",1],["C5",1],["D5",1],["C5",3]];
+function tone(f, t, d, v=.22){ const o=ac.createOscillator(), g=ac.createGain(); o.type="triangle"; o.frequency.value=f;
+  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(v,t+.01); g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(g); g.connect(master); o.start(t); o.stop(t+d+.05); }
+function play(){ let t = ac.currentTime+.1; const b = .72;
+  MEL.forEach(([n,l]) => { tone(F[n],t,l*b*1.6); tone(F[n]*2,t,l*b,.06); t += l*b; });
+  loopT = setTimeout(play, (t-ac.currentTime+3)*1000); }
+function startMusic(){ if (ac) return;
+  try { ac = new (window.AudioContext||window.webkitAudioContext)(); master = ac.createGain(); master.gain.value=.5;
+    const dl = ac.createDelay(); dl.delayTime.value=.32; const fb = ac.createGain(); fb.gain.value=.38;
+    master.connect(ac.destination); master.connect(dl); dl.connect(fb); fb.connect(dl); dl.connect(ac.destination); } catch(e){}
+  if (CONFIG.music){ song = new Audio(CONFIG.music); song.loop = true; song.volume = .7; song.onerror = synth; song.play().catch(synth); } else synth(); }
+function chime(){ if (!ac||!musicOn) return; [F.C5,F.E5,F.G5].forEach((f,i)=>tone(f,ac.currentTime+i*.07,1.2,.1)); }
+$("#snd").onclick = e => { musicOn = !musicOn; e.target.classList.toggle("off",!musicOn); if (musicOn){ ac&&ac.resume(); song&&!synthOn&&song.play().catch(()=>{}); } else { ac&&ac.suspend(); song&&song.pause(); } };
+
 /* ===== surat diketik ===== */
 let typeTok = 0;
 async function typeLetter(){
